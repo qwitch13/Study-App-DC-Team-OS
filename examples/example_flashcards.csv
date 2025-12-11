@@ -1,0 +1,10 @@
+Subject,Topic,Question,Answer,Difficulty
+BSYS,Processes,What is a process?,An instance of a program in execution with its own memory space and system resources,2
+BSYS,Threads,What is the main advantage of threads?,Threads share the same address space allowing efficient communication and resource sharing,2
+BSYS,Memory,What is virtual memory?,A memory management technique that creates an illusion of large contiguous memory by using disk space as an extension of RAM,2
+DigiCom,Networking,What is the OSI model?,A 7-layer conceptual framework that standardizes network communication functions,1
+DigiCom,VLAN,What does 802.1Q do?,Defines VLAN tagging standard with TPID 0x8100 and 12-bit VLAN ID (0-4095),3
+DigiCom,Routing,What is OSPF?,Open Shortest Path First - a link-state routing protocol that uses Dijkstra's algorithm,2
+TEAM,Development,What are Tuckman's 5 stages?,Forming - Storming - Norming - Performing - Adjourning,1
+TEAM,Roles,What is a Belbin team role?,One of 9 behavioral roles that contribute to team effectiveness (e.g. Coordinator Resource Investigator Plant),2
+TEAM,Agile,What is a sprint in Scrum?,A time-boxed iteration (usually 1-4 weeks) where a team delivers potentially shippable product increment,2

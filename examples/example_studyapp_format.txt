@@ -1,0 +1,76 @@
+---CARD---
+SUBJECT: BSYS
+TOPIC: Memory Management
+DIFFICULTY: 2
+FRONT:
+What is the difference between paging and segmentation?
+BACK:
+Paging:
+• Fixed-size blocks (pages)
+• No external fragmentation
+• Internal fragmentation possible
+• Simple memory management
+
+Segmentation:
+• Variable-size logical units
+• External fragmentation possible
+• No internal fragmentation
+• Matches program structure
+
+---CARD---
+SUBJECT: DigiCom
+TOPIC: Routing
+DIFFICULTY: 3
+FRONT:
+Explain OSPF areas and why they're used
+BACK:
+OSPF Areas:
+• Area 0 (Backbone) - all other areas connect to it
+• Regular Areas - reduce routing table size
+• Stub Areas - no external routes
+• Totally Stubby - only default route
+
+Benefits:
+• Reduces link-state database size
+• Limits flooding of LSAs
+• Improves scalability
+• Faster convergence within areas
+
+---CARD---
+SUBJECT: TEAM
+TOPIC: Leadership
+DIFFICULTY: 2
+FRONT:
+What are the three main leadership styles?
+BACK:
+1. Autocratic: Leader makes decisions alone
+   - Fast decisions, clear direction
+   - Low team engagement
+
+2. Democratic: Team participates in decisions
+   - High engagement, better buy-in
+   - Slower decision making
+
+3. Laissez-faire: Team has full autonomy
+   - High creativity and independence
+   - Requires mature, self-motivated team
+
+---QUESTION---
+SUBJECT: BSYS
+Q: Which page replacement algorithm has the best theoretical performance?
+A: FIFO (First In First Out)
+B: LRU (Least Recently Used)
+C: Optimal (Belady's Algorithm)
+D: Clock Algorithm
+CORRECT: C
+EXPLANATION: The Optimal algorithm replaces the page that will not be used for the longest time in the future. It has the lowest page fault rate but is impossible to implement as it requires future knowledge.
+
+---QUESTION---
+SUBJECT: DigiCom
+Q: What is the maximum number of VLANs supported by 802.1Q?
+A: 256
+B: 1024
+C: 4096
+D: 65536
+CORRECT: C
+EXPLANATION: 802.1Q uses a 12-bit VLAN ID field, allowing 2^12 = 4096 VLANs (0-4095). However, VLAN 0 and 4095 are reserved, leaving 4094 usable VLANs.

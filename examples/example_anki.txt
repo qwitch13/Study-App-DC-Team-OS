@@ -1,0 +1,10 @@
+BSYS: What is the PCB?	Process Control Block - contains process state, program counter, CPU registers, memory limits, and scheduling info	os, processes, pcb
+BSYS: Difference between process and thread	Process has separate address space; Thread shares address space with other threads in same process	os, processes, threads
+DigiCom: What is STP?	Spanning Tree Protocol - prevents network loops by creating a loop-free logical topology	networking, stp, layer2
+DigiCom: VLAN benefits	Network segmentation, improved security, better traffic management, reduced broadcast domains	networking, vlan
+TEAM: What is psychological safety?	Team climate where members feel safe to take interpersonal risks and be vulnerable	team, culture, safety
+What is the difference between hub and switch?	Hub broadcasts to all ports; Switch forwards only to destination port using MAC table	networking, devices
+What is ARP?	Address Resolution Protocol - maps IP addresses to MAC addresses in local network	networking, protocols, layer2
+What is the difference between TCP and UDP?	TCP: reliable, connection-oriented, ordered delivery, flow control; UDP: unreliable, connectionless, faster, no overhead	networking, protocols, transport
+BSYS: What is starvation?	A situation where a process waits indefinitely because other processes continuously get priority	os, scheduling
+DigiCom: What is a default gateway?	Router IP address used to forward packets destined for networks outside the local subnet	networking, routing, gateway

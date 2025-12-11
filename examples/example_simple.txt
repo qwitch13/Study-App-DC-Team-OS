@@ -1,0 +1,10 @@
+What is a zombie process?;A process that has completed execution but still has an entry in the process table
+What is deadlock?;A situation where processes are blocked because each is holding a resource and waiting for another resource held by another process
+What is thrashing?;Excessive paging activity where the system spends more time swapping pages than executing processes
+What is a semaphore?;A synchronization primitive that controls access to shared resources using a counter
+What is mutual exclusion?;The requirement that only one process can access a critical section at a time
+What is the producer-consumer problem?;A classic synchronization problem where producers create data and consumers process it from a shared buffer
+What is context switching?;The process of storing and restoring the state of a process so that execution can be resumed later
+What is a page fault?;An exception raised when a program accesses a page that is not in physical memory
+What is fragmentation?;Inefficient use of memory space where memory is divided into small unusable blocks
+What is RAID?;Redundant Array of Independent Disks - a technology that combines multiple disks for performance or redundancy
