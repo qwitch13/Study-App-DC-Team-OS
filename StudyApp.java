@@ -3030,7 +3030,10 @@ public class StudyApp {
         Flashcard newCard = new Flashcard(subject, topic, front, back, difficulty);
         customFlashcards.add(newCard);
         flashcards.add(newCard);
-        
+
+        // Save immediately to make it persistent
+        saveCustomContent();
+
         // Preview
         clearScreen();
         System.out.println("\n" + GREEN + "═══════════════════════════════════════════════════════════════" + RESET);
@@ -3041,7 +3044,7 @@ public class StudyApp {
         System.out.println("  " + BOLD + "Difficulty:" + RESET + " " + "★".repeat(difficulty) + "☆".repeat(3-difficulty));
         System.out.println("\n  " + CYAN + "Q: " + RESET + front.replace("\n", "\n     "));
         System.out.println("\n  " + GREEN + "A: " + RESET + back.replace("\n", "\n     "));
-        
+
         System.out.println("\n  " + YELLOW + "Add another? [y/N]" + RESET);
         if (scanner.nextLine().trim().toLowerCase().equals("y")) {
             addFlashcard();
@@ -3116,7 +3119,10 @@ public class StudyApp {
         Question newQ = new Question(subject, questionText, options, correctIndex, explanation);
         customQuestions.add(newQ);
         questions.add(newQ);
-        
+
+        // Save immediately to make it persistent
+        saveCustomContent();
+
         // Preview
         clearScreen();
         System.out.println("\n" + GREEN + "═══════════════════════════════════════════════════════════════" + RESET);
@@ -3129,7 +3135,7 @@ public class StudyApp {
             System.out.println("  " + marker + "[" + (char)('A' + i) + "] " + options[i] + RESET);
         }
         System.out.println("\n  " + YELLOW + "Explanation: " + RESET + explanation);
-        
+
         System.out.println("\n  " + YELLOW + "Add another? [y/N]" + RESET);
         if (scanner.nextLine().trim().toLowerCase().equals("y")) {
             addQuestion();
@@ -3260,6 +3266,7 @@ public class StudyApp {
         
         String choice = scanner.nextLine().trim();
         
+        boolean updated = false;
         switch (choice) {
             case "1":
                 System.out.print("  New topic: ");
@@ -3267,6 +3274,7 @@ public class StudyApp {
                 if (!newTopic.isEmpty()) {
                     card.topic = newTopic;
                     System.out.println(GREEN + "  ✓ Topic updated!" + RESET);
+                    updated = true;
                 }
                 break;
             case "2":
@@ -3275,6 +3283,7 @@ public class StudyApp {
                 if (!newFront.isEmpty()) {
                     card.front = newFront;
                     System.out.println(GREEN + "  ✓ Question updated!" + RESET);
+                    updated = true;
                 }
                 break;
             case "3":
@@ -3283,10 +3292,16 @@ public class StudyApp {
                 if (!newBack.isEmpty()) {
                     card.back = newBack;
                     System.out.println(GREEN + "  ✓ Answer updated!" + RESET);
+                    updated = true;
                 }
                 break;
         }
-        
+
+        // Save changes immediately
+        if (updated) {
+            saveCustomContent();
+        }
+
         pause(1500);
     }
     
@@ -3315,6 +3330,7 @@ public class StudyApp {
         
         String choice = scanner.nextLine().trim();
         
+        boolean updated = false;
         switch (choice) {
             case "1":
                 System.out.print("  New question: ");
@@ -3322,6 +3338,7 @@ public class StudyApp {
                 if (!newQ.isEmpty()) {
                     q.question = newQ;
                     System.out.println(GREEN + "  ✓ Question updated!" + RESET);
+                    updated = true;
                 }
                 break;
             case "2":
@@ -3331,9 +3348,12 @@ public class StudyApp {
                     String newOpt = scanner.nextLine().trim();
                     if (!newOpt.isEmpty()) {
                         q.options[i] = newOpt;
+                        updated = true;
                     }
                 }
-                System.out.println(GREEN + "  ✓ Options updated!" + RESET);
+                if (updated) {
+                    System.out.println(GREEN + "  ✓ Options updated!" + RESET);
+                }
                 break;
             case "3":
                 System.out.print("  Correct answer [A/B/C/D]: ");
@@ -3341,6 +3361,7 @@ public class StudyApp {
                 if (correct.length() == 1 && correct.charAt(0) >= 'A' && correct.charAt(0) <= 'D') {
                     q.correctIndex = correct.charAt(0) - 'A';
                     System.out.println(GREEN + "  ✓ Correct answer updated!" + RESET);
+                    updated = true;
                 }
                 break;
             case "4":
@@ -3349,10 +3370,16 @@ public class StudyApp {
                 if (!newExp.isEmpty()) {
                     q.explanation = newExp;
                     System.out.println(GREEN + "  ✓ Explanation updated!" + RESET);
+                    updated = true;
                 }
                 break;
         }
-        
+
+        // Save changes immediately
+        if (updated) {
+            saveCustomContent();
+        }
+
         pause(1500);
     }
     
@@ -3396,6 +3423,7 @@ public class StudyApp {
                     if (idx >= 0 && idx < customFlashcards.size()) {
                         Flashcard toRemove = customFlashcards.remove(idx);
                         flashcards.remove(toRemove);
+                        saveCustomContent();
                         System.out.println(GREEN + "  ✓ Flashcard deleted!" + RESET);
                     }
                 } catch (Exception e) {}
@@ -3419,11 +3447,12 @@ public class StudyApp {
                     if (idx >= 0 && idx < customQuestions.size()) {
                         Question toRemove = customQuestions.remove(idx);
                         questions.remove(toRemove);
+                        saveCustomContent();
                         System.out.println(GREEN + "  ✓ Question deleted!" + RESET);
                     }
                 } catch (Exception e) {}
                 break;
-                
+
             case "3":
                 System.out.print("\n  " + RED + "Delete ALL custom content? Type 'DELETE' to confirm: " + RESET);
                 if (scanner.nextLine().trim().equals("DELETE")) {
@@ -3431,13 +3460,14 @@ public class StudyApp {
                     questions.removeAll(customQuestions);
                     customFlashcards.clear();
                     customQuestions.clear();
+                    saveCustomContent();
                     System.out.println(GREEN + "  ✓ All custom content deleted!" + RESET);
                 } else {
                     System.out.println(YELLOW + "  Cancelled." + RESET);
                 }
                 break;
         }
-        
+
         pause(1500);
     }
     
@@ -3669,11 +3699,17 @@ public class StudyApp {
             System.out.println(GREEN + "\n  ✓ Import complete!" + RESET);
             System.out.println("  Flashcards imported: " + cardsImported);
             System.out.println("  Questions imported: " + questionsImported);
-            
+
+            // Save immediately to make imports persistent
+            if (cardsImported > 0 || questionsImported > 0) {
+                saveCustomContent();
+                System.out.println("  " + CYAN + "💾 Saved to custom content files" + RESET);
+            }
+
         } catch (Exception e) {
             System.out.println(RED + "\n  ✗ Import failed: " + e.getMessage() + RESET);
         }
-        
+
         System.out.println("\n  Press Enter to continue...");
         scanner.nextLine();
     }
@@ -3737,7 +3773,12 @@ public class StudyApp {
                 System.out.println("     " + RED + "Invalid format. Use: question;answer" + RESET);
             }
         }
-        
+
+        // Save all cards added in bulk
+        if (count > 0) {
+            saveCustomContent();
+        }
+
         System.out.println("\n  " + GREEN + "✓ Added " + count + " flashcards!" + RESET);
         pause(1500);
     }
